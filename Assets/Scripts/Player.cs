@@ -20,4 +20,17 @@ public class Player : MonoBehaviour
             thisAnimation.Play();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Obstacle")
+        {
+            Destroy(gameObject);
+        }
+
+        if(transform.position.x <= -8 && transform.position.y <= 5)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
