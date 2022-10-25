@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Text ScoreText;
+    public GameObject Obstacle;
+
+    int ScoreCount = 0;
+
     private Animation thisAnimation;
 
     void Start()
@@ -28,6 +34,13 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (Obstacle.transform.position.x <= -2)
+        {
+            ScoreCount++;
+
+            ScoreText.GetComponent<Text>().text = "Score: " + ScoreCount;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +48,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Obstacle")
         {
             Destroy(gameObject);
+            
         }       
     }
 }
